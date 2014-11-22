@@ -22,6 +22,7 @@ public class LevelSpawner : MonoBehaviour {
     bool gameStarted = false;
     float musicTimer;
 
+    float pointCounter = 2;
 	// Use this for initialization
 	void Start () {
         musicPlayer = gameObject.GetComponent<AudioSource>();
@@ -34,6 +35,7 @@ public class LevelSpawner : MonoBehaviour {
         {
             musicTimer += Time.deltaTime;
 
+            //spawn events
             if (eventIndex <= eventsList.Length - 1)
             {
                 if (musicTimer >= eventsList[eventIndex].eventTime - 3)
@@ -49,6 +51,18 @@ public class LevelSpawner : MonoBehaviour {
                     eventIndex++;
                 }
             }
+
+
+            //spawn points
+            pointCounter -= Time.deltaTime;
+            if (pointCounter <= 0)
+            {
+                GameObject point = Instantiate(Resources.Load("PointPickup", typeof(GameObject))) as GameObject;
+                point.transform.position = new Vector3(player.transform.position.x + 12,-1, 0);
+                GameObject.Destroy(point, 10);
+
+                pointCounter = 2;
+            }
         }
 	}
 
@@ -58,6 +72,7 @@ public class LevelSpawner : MonoBehaviour {
         GameObject nail = Instantiate(Resources.Load("Nail", typeof(GameObject))) as GameObject;
         nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.7f, -1.7f);
         GameObject.Destroy(nail, 10);
+
     }
     void spawnFoot()
     {

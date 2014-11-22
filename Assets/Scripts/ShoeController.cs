@@ -158,7 +158,10 @@ public class ShoeController : MonoBehaviour {
         if (other.gameObject.tag == "coin")
         {
             gameObject.GetComponent<PlayerScoreScript>().AddScore(scoreToAdd);
-            Destroy(other.gameObject);
+            other.collider.gameObject.GetComponent<AudioSource>().Play();
+            other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            other.gameObject.collider.enabled = false;
+            Destroy(other.gameObject, 2);
         }
         if (other.gameObject.tag == "speed") //do drugs and stuff
         {
