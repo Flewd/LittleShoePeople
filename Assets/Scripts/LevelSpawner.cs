@@ -20,8 +20,22 @@ public class LevelSpawner : MonoBehaviour {
         }
     }
 
-    musicEvent[] eventsList = new musicEvent[]{
-        new musicEvent(musicEventType.nail, 4.9f),          //random example: new musicEvent(Random.Range(0, 5), 4.9f)
+    musicEvent[] eventsList;
+
+    AudioSource musicPlayer;
+    int eventIndex = 0;
+
+    bool gameStarted = false;
+    float musicTimer;
+
+    float pointCounter = 2;
+	// Use this for initialization
+	void Start () {
+        musicPlayer = gameObject.GetComponent<AudioSource>();
+
+
+        eventsList = new musicEvent[]{
+        new musicEvent(musicEventType.nail, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
         new musicEvent(musicEventType.nail, 8.892f),
         new musicEvent(musicEventType.nail, 12.943f),
         new musicEvent(musicEventType.nail, 20.97f),
@@ -35,16 +49,6 @@ public class LevelSpawner : MonoBehaviour {
         new musicEvent(musicEventType.foot, 111.904f)
     };
 
-    AudioSource musicPlayer;
-    int eventIndex = 0;
-
-    bool gameStarted = false;
-    float musicTimer;
-
-    float pointCounter = 2;
-	// Use this for initialization
-	void Start () {
-        musicPlayer = gameObject.GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
