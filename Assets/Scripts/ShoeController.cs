@@ -11,10 +11,11 @@ public class ShoeController : MonoBehaviour {
     public GameObject InGameUI;
     public GameObject PostGameUI;
 
-    public Sprite bootWalking;
+    public Sprite bootWalking1;
     public Sprite bootWalking2;
+    public Sprite bootWalking3;
     float animationTimer = 0.25f;
-    bool animationSetTo1 = false;
+    int animationIndex = 1;
 
     public float scoreToAdd; 
     float jumpCounter = 0;
@@ -29,6 +30,8 @@ public class ShoeController : MonoBehaviour {
     bool needleDown = true;
     bool isSpeedPower = false;
     bool isSlowPower = false;
+
+    float footCooldown = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -60,7 +63,7 @@ public class ShoeController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             gameState = GameStates.play;
-            gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking;
+            gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking1;
             GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>().startGenerator();
         }
     }
@@ -73,6 +76,7 @@ public class ShoeController : MonoBehaviour {
 
         jumpCounter -= Time.deltaTime;
         needleCounter -= Time.deltaTime;
+        footCooldown += Time.deltaTime;
 
         gameObject.transform.position += new Vector3(6 * Time.deltaTime, 0, 0);
 
@@ -137,16 +141,21 @@ public class ShoeController : MonoBehaviour {
         animationTimer -= Time.deltaTime;
         if (animationTimer <= 0)
         {
-            if (animationSetTo1 == true)
+            
+
+            switch (animationIndex)
             {
-                gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking2;
-                animationSetTo1 = false;
+                case 1: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking1; break;
+                case 2: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking2; break;
+                case 3: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking3; break;
             }
-            else if (animationSetTo1 == false)
+            
+            if (animationIndex >= 3)
             {
-                gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking;
-                animationSetTo1 = true;
+                animationIndex = 0;
             }
+            animationIndex++;
+               
             animationTimer = 0.25f;
         }
         
@@ -167,11 +176,11 @@ public class ShoeController : MonoBehaviour {
         }
         if (other.gameObject.tag == "foot")
         {
-            if (needleDown == true)
+            if (needleDown == true && footCooldown >= 2)
             {
-                gameObject.SendMessage("SubtractHealth", 25f);
                 other.collider.enabled = false;
-                Debug.Log("foot hit");
+                gameObject.SendMessage("SubtractHealth", 25f);
+                footCooldown = 0;
             }
 
         }
