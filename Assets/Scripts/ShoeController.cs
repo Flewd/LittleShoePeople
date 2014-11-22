@@ -20,7 +20,6 @@ public class ShoeController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
        
 	}
 	
@@ -93,13 +92,12 @@ public class ShoeController : MonoBehaviour {
         PostGameUI.SetActive(true);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "nail")
+        if (other.gameObject.tag == "nail")
         {
-            Debug.Log("NAIL HIT");
-            collision.collider.enabled = false;
             gameObject.SendMessage("SubtractHealth", 25f);
+            other.collider.enabled = false;
         }
     }
 }
