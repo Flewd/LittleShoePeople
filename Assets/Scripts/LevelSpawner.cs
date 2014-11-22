@@ -21,10 +21,10 @@ public class LevelSpawner : MonoBehaviour {
     }
 
     musicEvent[] eventsList = new musicEvent[]{
-        new musicEvent(musicEventType.slow, 4.9f),
+        new musicEvent(musicEventType.nail, 4.9f),
         new musicEvent(musicEventType.nail, 8.892f),
         new musicEvent(musicEventType.nail, 12.943f),
-        new musicEvent(musicEventType.speed, 20.97f),
+        new musicEvent(musicEventType.nail, 20.97f),
         new musicEvent(musicEventType.foot, 35.908f),
         new musicEvent(musicEventType.nail, 41.87f),
         new musicEvent(musicEventType.nail, 54.964f),
