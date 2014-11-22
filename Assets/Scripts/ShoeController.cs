@@ -162,10 +162,8 @@ public class ShoeController : MonoBehaviour {
     {
         if (other.gameObject.tag == "nail")
         {
-
             gameObject.SendMessage("SubtractHealth", 25f);
             other.collider.enabled = false;
-            
         }
         if (other.gameObject.tag == "foot")
         {
