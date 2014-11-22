@@ -39,7 +39,6 @@ public class HealthSystemScript : MonoBehaviour {
     }
     void TriggerGameOver()
     {
-        //TODO: Send message for switchin the game state to game over one via here. 
         gameObject.GetComponent<ShoeController>().gameState = ShoeController.GameStates.end;
     }
 }
