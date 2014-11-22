@@ -49,7 +49,6 @@ public class ShoeController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             gameState = GameStates.play;
-            
             GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>().startGenerator();
         }
     }
@@ -70,7 +69,7 @@ public class ShoeController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 jumpCounter = 1.5f;
-                gameObject.rigidbody.AddForce(0, 600, 0);
+                gameObject.rigidbody.AddForce(0, 620, 0);
                 //          gameObject.rigidbody.AddRelativeTorque(0, 0, 35);
             }
         }

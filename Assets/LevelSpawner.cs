@@ -34,23 +34,22 @@ public class LevelSpawner : MonoBehaviour {
         {
             musicTimer += Time.deltaTime;
 
-            if (musicTimer >= 30)
+            if (eventIndex <= eventsList.Length - 1)
             {
-                Debug.Log(musicTimer);
-            }
-
-            if (musicTimer >= eventsList[eventIndex].eventTime - 2)
-            {
-                spawnNail();
-                eventIndex++;
+                if (musicTimer >= eventsList[eventIndex].eventTime - 2)
+                {
+                    spawnNail();
+                    eventIndex++;
+                }
             }
         }
 	}
 
+    float jumpDistance = 1.85f;
     void spawnNail()
     {
         GameObject nail = Instantiate(Resources.Load("Nail", typeof(GameObject))) as GameObject;
-        nail.transform.position = new Vector3(player.transform.position.x + 12, -1.7f, -1.7f);
+        nail.transform.position = new Vector3(player.transform.position.x + 12 + jumpDistance, -1.7f, -1.7f);
     }
 
     public void startGenerator()
