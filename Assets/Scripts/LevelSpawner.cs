@@ -34,7 +34,7 @@ public class LevelSpawner : MonoBehaviour {
         musicPlayer = gameObject.GetComponent<AudioSource>();
 
         eventsList = new musicEvent[]{
-        new musicEvent(musicEventType.nail, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
+        new musicEvent(musicEventType.foot, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
         new musicEvent(musicEventType.nail, 8.892f),
         new musicEvent((musicEventType)Random.Range(2, 5), 12.943f),
         new musicEvent(musicEventType.nail, 20.97f),
@@ -81,7 +81,7 @@ public class LevelSpawner : MonoBehaviour {
             if (pointCounter <= 0)
             {
                 GameObject point = Instantiate(Resources.Load("PointPickup", typeof(GameObject))) as GameObject;
-                point.transform.position = new Vector3(player.transform.position.x + 12,-1, 0);
+                point.transform.position = new Vector3(player.transform.position.x + 18,-1, 0);
                 GameObject.Destroy(point, 10);
 
                 point.GetComponent<AudioSource>().pitch = Random.Range(0.5f, 1.5f);
@@ -94,7 +94,7 @@ public class LevelSpawner : MonoBehaviour {
     void spawnNail()
     {
         GameObject nail = Instantiate(Resources.Load("Nail", typeof(GameObject))) as GameObject;
-        nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.85f, -0.5f);
+        nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1f, -0.5f);
         GameObject.Destroy(nail, 10);
 
     }
