@@ -70,7 +70,7 @@ public class LevelSpawner : MonoBehaviour {
     void spawnNail()
     {
         GameObject nail = Instantiate(Resources.Load("Nail", typeof(GameObject))) as GameObject;
-        nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.7f, -1.7f);
+        nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.7f, -0.5f);
         GameObject.Destroy(nail, 10);
 
     }
@@ -81,10 +81,6 @@ public class LevelSpawner : MonoBehaviour {
         StartCoroutine(DropFootAfterSeconds(2.75f, foot));
         GameObject.Destroy(foot, 10);
     }
-
-
-     
-   
 
     IEnumerator DropFootAfterSeconds(float sec, GameObject foot)
     {

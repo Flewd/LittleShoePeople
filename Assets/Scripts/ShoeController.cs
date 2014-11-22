@@ -11,6 +11,11 @@ public class ShoeController : MonoBehaviour {
     public GameObject InGameUI;
     public GameObject PostGameUI;
 
+    public Sprite bootWalking;
+    public Sprite bootWalking2;
+    float animationTimer = 0.25f;
+    bool animationSetTo1 = false;
+
     public float scoreToAdd; 
     float jumpCounter = 0;
     float needleCounter = 0;
@@ -55,6 +60,7 @@ public class ShoeController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             gameState = GameStates.play;
+            gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking;
             GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>().startGenerator();
         }
     }
@@ -126,6 +132,22 @@ public class ShoeController : MonoBehaviour {
         {
             Time.timeScale = 1f;
             GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1f;
+        }
+
+        animationTimer -= Time.deltaTime;
+        if (animationTimer <= 0)
+        {
+            if (animationSetTo1 == true)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking2;
+                animationSetTo1 = false;
+            }
+            else if (animationSetTo1 == false)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking;
+                animationSetTo1 = true;
+            }
+            animationTimer = 0.25f;
         }
         
     }
