@@ -38,7 +38,14 @@ public class LevelSpawner : MonoBehaviour {
             {
                 if (musicTimer >= eventsList[eventIndex].eventTime - 3)
                 {
-                    spawnNail();
+                    if (eventsList[eventIndex].eventType == musicEventType.nail)
+                    {
+                        spawnNail();
+                    }
+                    else if (eventsList[eventIndex].eventType == musicEventType.foot)
+                    {
+                        spawnFoot();
+                    }
                     eventIndex++;
                 }
             }
@@ -51,6 +58,23 @@ public class LevelSpawner : MonoBehaviour {
         GameObject nail = Instantiate(Resources.Load("Nail", typeof(GameObject))) as GameObject;
         nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.7f, -1.7f);
         GameObject.Destroy(nail, 10);
+    }
+    void spawnFoot()
+    {
+        GameObject foot = Instantiate(Resources.Load("Shadow", typeof(GameObject))) as GameObject;
+        foot.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.7f, -1.7f);
+        StartCoroutine(DropFootAfterSeconds(2.75f, foot));
+        GameObject.Destroy(foot, 10);
+    }
+
+
+     
+   
+
+    IEnumerator DropFootAfterSeconds(float sec, GameObject foot)
+    {
+        yield return new WaitForSeconds(sec);
+        foot.GetComponent<ShadowBehaviorScript>().DropFoot();
     }
 
     public void startGenerator()

@@ -11,12 +11,6 @@ public class HealthSystemScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SubtractHealth(25f);
-        }
-
 	}
 
     public void SubtractHealth(float amount)

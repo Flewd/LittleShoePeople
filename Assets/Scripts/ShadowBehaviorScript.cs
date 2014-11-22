@@ -29,15 +29,19 @@ public class ShadowBehaviorScript : MonoBehaviour {
 	void Update () {
         if (isSeeking)
         {
-            shadow.gameObject.active = true;
-            ShadowSeek();
+   //         shadow.gameObject.active = true;
+   //         ShadowSeek();
         }
         else if (!isSeeking)
         {
             //Hide the shadow and do not seek and whatnot stuffs.
-            shadow.gameObject.active = false;
+      //      shadow.gameObject.active = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            DropFoot();
+        }
 
 	}
 
@@ -61,43 +65,42 @@ public class ShadowBehaviorScript : MonoBehaviour {
             }
         }
         /*TODO: Move left to right.
-         * If Shoe in collider for X time, SpawnFoot();
+         * If Shoe in collider for X time, DropFoot();
          */
     }
 
     //This will make the foot come straight down when the shoe (Player) is in the shadow for too long. 
-    void SpawnFoot ()
+    public void DropFoot ()
     {
-        Debug.Log("Foot Should Go Boom!");
-        foot.SendMessage("SnapToShoe");
+        gameObject.rigidbody.AddForce(0, - 900, 0);
         //TODO: Foot moves straight down. 
     }
 
-   /* This shit aint needed no more brah. 
-    * void OnTriggerEnter(Collider col)
-    {
-        Debug.Log(col.gameObject.name + "Collided!");
-    }
+    /* This shit aint needed no more brah. 
+     * void OnTriggerEnter(Collider col)
+     {
+         Debug.Log(col.gameObject.name + "Collided!");
+     }
 
-    void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject == shoe)
-        {
-            shadowTimer += Time.deltaTime;
-           // Debug.Log("Timer: " + shadowTimer);
-            if (shadowTimer >= stompTime)
-            {
-                SpawnFoot();
-            }
-        }
-    }
-    void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject == shoe)
-        {
-            shadowTimer = 0f;
-            Debug.Log("Timer Reset to 0f!");
-        }
-    }
-    */
+     void OnTriggerStay(Collider col)
+     {
+         if (col.gameObject == shoe)
+         {
+             shadowTimer += Time.deltaTime;
+            // Debug.Log("Timer: " + shadowTimer);
+             if (shadowTimer >= stompTime)
+             {
+                 DropFoot();
+             }
+         }
+     }
+     void OnTriggerExit(Collider col)
+     {
+         if (col.gameObject == shoe)
+         {
+             shadowTimer = 0f;
+             Debug.Log("Timer Reset to 0f!");
+         }
+     }
+     */
 }

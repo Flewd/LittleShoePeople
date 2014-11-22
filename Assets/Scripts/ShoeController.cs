@@ -76,6 +76,7 @@ public class ShoeController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.S) && needleCounter <= 0 && needleDown == true)
         {
             needle.transform.position = needle.transform.position + needleUpOffset;
+            needle.collider.enabled = true;
             needleCounter = 0.50F;
             needleDown = false;
         }
@@ -83,6 +84,7 @@ public class ShoeController : MonoBehaviour {
         {
             needle.transform.position = needle.transform.position - needleUpOffset;
             needleDown = true;
+            needle.collider.enabled = false;
         }
     }
     void endUpdate()
@@ -96,8 +98,20 @@ public class ShoeController : MonoBehaviour {
     {
         if (other.gameObject.tag == "nail")
         {
+
             gameObject.SendMessage("SubtractHealth", 25f);
             other.collider.enabled = false;
+            
+        }
+        if (other.gameObject.tag == "foot")
+        {
+            if (needleDown == true)
+            {
+                gameObject.SendMessage("SubtractHealth", 25f);
+                other.collider.enabled = false;
+                Debug.Log("foot hit");
+            }
+
         }
     }
 }
