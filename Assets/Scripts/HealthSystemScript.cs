@@ -12,15 +12,21 @@ public class HealthSystemScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SubtractHealth(25f);
+        }
+
 	}
 
     public void SubtractHealth(float amount)
     {
-        currentHealth -= amount;
-        if (currentHealth - amount <= totalHealth)
+        if (currentHealth - amount <= 0f)
         {
             TriggerGameOver();
         }
+        currentHealth -= amount;
+        
     }
 
     public void AddHealth(float amount)
@@ -34,5 +40,6 @@ public class HealthSystemScript : MonoBehaviour {
     void TriggerGameOver()
     {
         //TODO: Send message for switchin the game state to game over one via here. 
+        gameObject.GetComponent<ShoeController>().gameState = ShoeController.GameStates.end;
     }
 }
