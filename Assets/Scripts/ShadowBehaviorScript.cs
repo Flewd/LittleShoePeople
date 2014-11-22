@@ -8,7 +8,10 @@ public class ShadowBehaviorScript : MonoBehaviour {
 
     public float shadowSeekSpeed;
     public float stompTime; //Time that the foot will graciously insert itself into the shoe. 
+    public float wiggleRoom;
     float shadowTimer;
+
+    float spawnXPosition;
 
     bool isSeeking;
     bool playerFound;
@@ -19,11 +22,12 @@ public class ShadowBehaviorScript : MonoBehaviour {
         foot = GameObject.Find("Foot");
         isSeeking = true;
         hitRightBound = false;
+        spawnXPosition = gameObject.transform.position.x;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        Debug.Log(hitRightBound);
         if (isSeeking)
         {
             shadow.gameObject.active = true;
@@ -35,17 +39,8 @@ public class ShadowBehaviorScript : MonoBehaviour {
             shadow.gameObject.active = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ToggleSeeking();
-        }
-	}
 
-    void ToggleSeeking()
-    {
-        isSeeking = !isSeeking;
-        Debug.Log("Seeking: " + isSeeking);
-    }
+	}
 
     //This will trigger the shadow to start seeking the shoe. 
     void ShadowSeek()
@@ -53,8 +48,7 @@ public class ShadowBehaviorScript : MonoBehaviour {
         if (hitRightBound)
         {
             shadow.gameObject.rigidbody.MovePosition(new Vector3(shadow.gameObject.transform.position.x - shadowSeekSpeed * Time.deltaTime, shadow.gameObject.transform.position.y, shadow.gameObject.transform.position.z));
-            //shadow.gameObject.transform.position = new Vector3(shadow.gameObject.transform.position.x - shadowSeekSpeed * Time.deltaTime, shadow.gameObject.transform.position.y, shadow.gameObject.transform.position.z);
-            if (shadow.gameObject.transform.position.x <= -9f)
+            if (shadow.gameObject.transform.position.x <= spawnXPosition + wiggleRoom * -1f)
             {
                 hitRightBound = false;
             }
@@ -62,8 +56,7 @@ public class ShadowBehaviorScript : MonoBehaviour {
         if (!hitRightBound)
         {
             shadow.gameObject.rigidbody.MovePosition(new Vector3(shadow.gameObject.transform.position.x + shadowSeekSpeed * Time.deltaTime, shadow.gameObject.transform.position.y, shadow.gameObject.transform.position.z));
-            //shadow.gameObject.transform.position = new Vector3(shadow.gameObject.transform.position.x + shadowSeekSpeed * Time.deltaTime, shadow.gameObject.transform.position.y, shadow.gameObject.transform.position.z);
-            if (shadow.gameObject.transform.position.x >= 9f)
+            if (shadow.gameObject.transform.position.x >= spawnXPosition + wiggleRoom)
             {
                 hitRightBound = true;
             }
@@ -81,7 +74,7 @@ public class ShadowBehaviorScript : MonoBehaviour {
         //TODO: Foot moves straight down. 
     }
 
-    void OnTriggerEnter(Collider col)
+   /* void OnTriggerEnter(Collider col)
     {
         Debug.Log(col.gameObject.name + "Collided!");
     }
@@ -91,7 +84,7 @@ public class ShadowBehaviorScript : MonoBehaviour {
         if (col.gameObject == shoe)
         {
             shadowTimer += Time.deltaTime;
-            Debug.Log("Timer: " + shadowTimer);
+           // Debug.Log("Timer: " + shadowTimer);
             if (shadowTimer >= stompTime)
             {
                 SpawnFoot();
@@ -106,4 +99,5 @@ public class ShadowBehaviorScript : MonoBehaviour {
             Debug.Log("Timer Reset to 0f!");
         }
     }
+    */
 }

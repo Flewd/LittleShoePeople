@@ -3,6 +3,8 @@ using System.Collections;
 
 public class FootBehaviorScript : MonoBehaviour {
     GameObject shoe;
+    bool dropTheShoe;
+    public float dropSpeed;
 	// Use this for initialization
 	void Start () {
         shoe = GameObject.Find("Shoe");
@@ -10,8 +12,21 @@ public class FootBehaviorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if (dropTheShoe)
+        {
+            Drop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            ToggleDrop();
+        }
 	}
+    
+    public void ToggleDrop()
+    {
+        dropTheShoe = !dropTheShoe;
+    }
 
     void SnapToShoe()
     {
@@ -19,8 +34,9 @@ public class FootBehaviorScript : MonoBehaviour {
         gameObject.transform.localPosition = new Vector3(0f, shoe.transform.position.y + 7.5f, 0f);
     }
 
-    void Drop()
+    public void Drop()
     {
-
+        gameObject.transform.SetParent(null,true);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - dropSpeed * Time.deltaTime, gameObject.transform.position.x);
     }
 }
