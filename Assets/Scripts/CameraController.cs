@@ -18,5 +18,16 @@ public class CameraController : MonoBehaviour {
         {
             gameObject.transform.position = new Vector3(shoePlayer.transform.position.x + cameraOffset.x, gameObject.transform.position.y, shoePlayer.transform.position.z + cameraOffset.z);
         }
+        if(Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            Time.timeScale = 3;
+            GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 3f;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            Time.timeScale = 1;
+            GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1f;
+        }
+        
 	}
 }

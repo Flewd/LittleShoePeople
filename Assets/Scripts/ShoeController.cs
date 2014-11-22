@@ -187,7 +187,9 @@ public class ShoeController : MonoBehaviour {
             if (speedPowerupTimer >= speedPowerupTimerReset)
             {
                 speedPowerupTimer = 0f;
-                isSpeedPower = !isSpeedPower;
+                isSpeedPower = false;
+                Time.timeScale = 1f;
+                GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1f;
             }
             
         }
@@ -200,20 +202,15 @@ public class ShoeController : MonoBehaviour {
             if (slowPowerupTimer >= slowPowerupTimerReset)
             {
                 slowPowerupTimer = 0f;
-                isSlowPower = !isSlowPower;
+                isSlowPower = false;
+                Time.timeScale = 1f;
+                GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1f;
             }
-        }
-        if (!isSpeedPower && !isSlowPower)
-        {
-            Time.timeScale = 1f;
-            GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1f;
         }
 
         animationTimer -= Time.deltaTime;
         if (animationTimer <= 0)
         {
-            
-
             switch (animationIndex)
             {
                 case 1: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking1; break;
