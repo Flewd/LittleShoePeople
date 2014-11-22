@@ -14,7 +14,7 @@ public class ShoeController : MonoBehaviour {
     public Sprite bootWalking1;
     public Sprite bootWalking2;
     public Sprite bootWalking3;
-    float animationTimer = 0.25f;
+    float animationTimer = 0.5f;
     int animationIndex = 1;
 
     public float scoreToAdd; 
@@ -156,7 +156,7 @@ public class ShoeController : MonoBehaviour {
             }
             animationIndex++;
                
-            animationTimer = 0.25f;
+            animationTimer = 0.5f;
         }
         
     }
