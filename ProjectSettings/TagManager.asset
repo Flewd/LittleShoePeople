@@ -10,6 +10,7 @@ TagManager:
   - speed
   - slow
   - mouseTrap
+  - superMouseTrap
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

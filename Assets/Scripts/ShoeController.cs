@@ -40,6 +40,7 @@ public class ShoeController : MonoBehaviour {
 
     float footCooldown = 2;
     bool onMouseTrap = false;
+    bool onSuperMouseTrap = false;
     GameObject currentMouseTrap;
 
     Hashtable ht = new Hashtable(); //normal jump
@@ -116,15 +117,15 @@ public class ShoeController : MonoBehaviour {
                 if (onMouseTrap == false)
                 {
                     Audio_hop.audio.Play();
-                    jumpCounter = 1.5f;
+                    jumpCounter = 1.35f;
                     gameObject.rigidbody.AddForce(0, 700, 0);
                     iTween.RotateAdd(gameObject, ht);
                     lockFork = true;
                 }
-                else
+                else if (onMouseTrap == true)
                 {
                     Audio_mousetrap.audio.Play();
-                    jumpCounter = 2f;
+                    jumpCounter = 1.8f;
                     gameObject.rigidbody.AddForce(0, 1100, 0);
                     iTween.RotateAdd(gameObject, htm);
                     if (currentMouseTrap != null)
@@ -133,6 +134,22 @@ public class ShoeController : MonoBehaviour {
                     }
                     lockFork = true;
                 }
+                if (onSuperMouseTrap == true)
+                {
+                    Audio_mousetrap.audio.Play();
+                    jumpCounter = 10;
+                    gameObject.rigidbody.AddForce(0, 1600, 0);
+                    iTween.RotateAdd(gameObject, htm);
+                    if (currentMouseTrap != null)
+                    {
+                        currentMouseTrap.GetComponent<MouseTrapController>().switchMouseTrapSprite();
+                    }
+                    lockFork = true;
+
+                    iTween.MoveTo(Camera.main.gameObject, Camera.main.gameObject.transform.position + new Vector3(5,10,0),2);
+                    Camera.main.gameObject.GetComponent<CameraController>().toiletBegan = true;
+                }
+                
             }
         }
 
@@ -267,7 +284,13 @@ public class ShoeController : MonoBehaviour {
         }
         if (other.gameObject.tag == "mouseTrap")
         {
+            
             onMouseTrap = true;
+            currentMouseTrap = other.gameObject;
+        }
+        if (other.gameObject.tag == "superMouseTrap")
+        {
+            onSuperMouseTrap = true;
             currentMouseTrap = other.gameObject;
         }
     }
@@ -277,7 +300,11 @@ public class ShoeController : MonoBehaviour {
         if (other.gameObject.tag == "mouseTrap")
         {
             onMouseTrap = false;
-        } 
+        }
+        if (other.gameObject.tag == "superMouseTrap")
+        {
+            onSuperMouseTrap = false;
+        }
     }
     void unlockFork()
     {
