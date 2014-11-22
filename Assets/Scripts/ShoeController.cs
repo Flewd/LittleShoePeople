@@ -26,12 +26,13 @@ public class ShoeController : MonoBehaviour {
     public float slowPowerupTimerReset = 0.375f;
 
     public GameObject needle;
-    Vector3 needleUpOffset = new Vector3(0, 1, 0);
+    Vector3 needleUpOffset = new Vector3(0, 1.5f, 0);
     bool needleDown = true;
     bool isSpeedPower = false;
     bool isSlowPower = false;
 
     float footCooldown = 2;
+    bool onMouseTrap = false;
 
 	// Use this for initialization
 	void Start () {
@@ -84,14 +85,25 @@ public class ShoeController : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                jumpCounter = 1.5f;
-                gameObject.rigidbody.AddForce(0, 650, 0);
+                if (onMouseTrap == false)
+                {
+                    jumpCounter = 1.5f;
+                    gameObject.rigidbody.AddForce(0, 650, 0);
+                }
+                else
+                {
+                    jumpCounter = 2f;
+                    gameObject.rigidbody.AddForce(0, 1100, 0);
+                }
                 //          gameObject.rigidbody.AddRelativeTorque(0, 0, 35);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.S) && needleCounter <= 0 && needleDown == true)
         {
+
+            //needle.transform.localPosition = Vector3.Lerp(needle.transform.localPosition, needle.transform.localPosition + needleUpOffset, 10);
+
             needle.transform.position = needle.transform.position + needleUpOffset;
             needle.collider.enabled = true;
             needleCounter = 0.50F;
@@ -99,6 +111,9 @@ public class ShoeController : MonoBehaviour {
         }
         if (needleCounter <= 0.25F && needleDown == false)
         {
+
+            //needle.transform.localPosition = Vector3.Lerp(needle.transform.localPosition, needle.transform.localPosition - needleUpOffset, 10);
+
             needle.transform.position = needle.transform.position - needleUpOffset;
             needleDown = true;
             needle.collider.enabled = false;
@@ -210,5 +225,17 @@ public class ShoeController : MonoBehaviour {
             }
             Destroy(other.gameObject);
         }
+        if (other.gameObject.tag == "mouseTrap")
+        {
+            onMouseTrap = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "mouseTrap")
+        {
+            onMouseTrap = false;
+        } 
     }
 }
