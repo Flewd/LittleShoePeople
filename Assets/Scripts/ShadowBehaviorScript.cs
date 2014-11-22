@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShadowBehaviorScript : MonoBehaviour {
     public GameObject shoe;
-    GameObject shadow;
+    GameObject shadow; //TODO: Replace all the shadow 
     GameObject foot;
 
     public float shadowSeekSpeed;
@@ -15,7 +15,7 @@ public class ShadowBehaviorScript : MonoBehaviour {
     bool hitRightBound;
 	// Use this for initialization
 	void Start () {
-        shadow = GameObject.Find("Shadow");
+        shadow = gameObject; //I derped. This will be changed / removed soon. Originally was a footscript and this was not changed because lazy. 
         foot = GameObject.Find("Foot");
         isSeeking = true;
         hitRightBound = false;
@@ -26,13 +26,13 @@ public class ShadowBehaviorScript : MonoBehaviour {
 	
         if (isSeeking)
         {
-            shadow.gameObject.renderer.active = true;
+            shadow.gameObject.active = true;
             ShadowSeek();
         }
         else if (!isSeeking)
         {
             //Hide the shadow and do not seek and whatnot stuffs.
-            shadow.gameObject.renderer.active = false;
+            shadow.gameObject.active = false;
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -77,6 +77,7 @@ public class ShadowBehaviorScript : MonoBehaviour {
     void SpawnFoot ()
     {
         Debug.Log("Foot Should Go Boom!");
+        foot.SendMessage("SnapToShoe");
         //TODO: Foot moves straight down. 
     }
 
