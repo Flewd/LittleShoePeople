@@ -42,6 +42,7 @@ public class ShoeController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             gameState = GameStates.play;
+            GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>().startGenerator();
         }
     }
 
@@ -50,14 +51,14 @@ public class ShoeController : MonoBehaviour {
         jumpCounter -= Time.deltaTime;
         needleCounter -= Time.deltaTime;
 
-        gameObject.transform.position += new Vector3(2 * Time.deltaTime, 0, 0);
+        gameObject.transform.position += new Vector3(6 * Time.deltaTime, 0, 0);
 
         if (jumpCounter <= 0)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                jumpCounter = 2;
-                gameObject.rigidbody.AddForce(0, 400, 0);
+                jumpCounter = 1.5f;
+                gameObject.rigidbody.AddForce(0, 600, 0);
                 //          gameObject.rigidbody.AddRelativeTorque(0, 0, 35);
             }
         }

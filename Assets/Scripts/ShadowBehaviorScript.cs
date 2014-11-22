@@ -27,7 +27,6 @@ public class ShadowBehaviorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(hitRightBound);
         if (isSeeking)
         {
             shadow.gameObject.active = true;
