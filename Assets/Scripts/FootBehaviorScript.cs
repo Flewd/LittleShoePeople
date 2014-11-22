@@ -45,7 +45,6 @@ public class FootBehaviorScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "needle")
         {
-            Debug.Log("foot stab");
             shadow.rigidbody.velocity = new Vector3(shadow.rigidbody.velocity.x * -1, shadow.rigidbody.velocity.y * -1, shadow.rigidbody.velocity.z * -1);
         }
     }

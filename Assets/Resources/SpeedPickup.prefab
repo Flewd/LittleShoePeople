@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 135: {fileID: 13500000}
   m_Layer: 0
-  m_Name: Speed Pickup
+  m_Name: SpeedPickup
   m_TagString: speed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

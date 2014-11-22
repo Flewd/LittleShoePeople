@@ -6,16 +6,35 @@ public class LevelSpawner : MonoBehaviour {
 
     public GameObject player;
 
-    public enum musicEventType {nail,foot};
+    public enum musicEventType {nail,foot,mouseTrap,slow,speed};
 
-    [System.Serializable]
     public class musicEvent
     {
         public musicEventType eventType;
         public float eventTime;
+
+        public musicEvent(musicEventType _eventType,float _eventTime)
+        {
+            eventType = _eventType;
+            eventTime = _eventTime;
+        }
     }
 
-    public musicEvent[] eventsList;
+    musicEvent[] eventsList = new musicEvent[]{
+        new musicEvent(musicEventType.slow, 4.9f),
+        new musicEvent(musicEventType.nail, 8.892f),
+        new musicEvent(musicEventType.nail, 12.943f),
+        new musicEvent(musicEventType.speed, 20.97f),
+        new musicEvent(musicEventType.foot, 35.908f),
+        new musicEvent(musicEventType.nail, 41.87f),
+        new musicEvent(musicEventType.nail, 54.964f),
+        new musicEvent(musicEventType.nail, 66.858f),
+        new musicEvent(musicEventType.foot, 73.895f),
+        new musicEvent(musicEventType.nail, 80.679f),
+        new musicEvent(musicEventType.nail, 103.6f),
+        new musicEvent(musicEventType.foot, 111.904f)
+    };
+
     AudioSource musicPlayer;
     int eventIndex = 0;
 
@@ -40,13 +59,13 @@ public class LevelSpawner : MonoBehaviour {
             {
                 if (musicTimer >= eventsList[eventIndex].eventTime - 3)
                 {
-                    if (eventsList[eventIndex].eventType == musicEventType.nail)
+                    switch (eventsList[eventIndex].eventType)
                     {
-                        spawnNail();
-                    }
-                    else if (eventsList[eventIndex].eventType == musicEventType.foot)
-                    {
-                        spawnFoot();
+                        case musicEventType.nail: spawnNail(); break;
+                        case musicEventType.foot: spawnFoot(); break;
+                        case musicEventType.mouseTrap: spawnMouseTrap(); break;
+                        case musicEventType.slow: spawnSlow(); break;
+                        case musicEventType.speed: spawnSpeed(); break;
                     }
                     eventIndex++;
                 }
@@ -80,6 +99,24 @@ public class LevelSpawner : MonoBehaviour {
         foot.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.7f, -1.7f);
         StartCoroutine(DropFootAfterSeconds(2.75f, foot));
         GameObject.Destroy(foot, 10);
+    }
+    void spawnMouseTrap()
+    {
+        GameObject mouseTrap = Instantiate(Resources.Load("MouseTrap", typeof(GameObject))) as GameObject;
+        mouseTrap.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, 3, -0.5f);
+        GameObject.Destroy(mouseTrap, 10);
+    }
+    void spawnSlow()
+    {
+        GameObject slow = Instantiate(Resources.Load("SlowPowerUp", typeof(GameObject))) as GameObject;
+        slow.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.85f, -0.5f);
+        GameObject.Destroy(slow, 10);
+    }
+    void spawnSpeed()
+    {
+        GameObject speed = Instantiate(Resources.Load("SpeedPickup", typeof(GameObject))) as GameObject;
+        speed.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.85f, -0.5f);
+        GameObject.Destroy(speed, 10);
     }
 
     IEnumerator DropFootAfterSeconds(float sec, GameObject foot)

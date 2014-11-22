@@ -103,7 +103,6 @@ public class ShoeController : MonoBehaviour {
                     gameObject.rigidbody.AddForce(0, 1100, 0);
                     if (currentMouseTrap != null)
                     {
-                        Debug.Log(currentMouseTrap.name);
                         currentMouseTrap.GetComponent<MouseTrapController>().switchMouseTrapSprite();
                     }
                 }
@@ -137,10 +136,8 @@ public class ShoeController : MonoBehaviour {
             Time.timeScale = 1.5f;
             GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1.5f;
             speedPowerupTimer += Time.deltaTime;
-            Debug.Log("Speed Powerup Timer: " + speedPowerupTimer);
             if (speedPowerupTimer >= speedPowerupTimerReset)
             {
-                Debug.Log("Speed Power Up Expired;;;;;;");
                 speedPowerupTimer = 0f;
                 isSpeedPower = !isSpeedPower;
             }
@@ -151,10 +148,8 @@ public class ShoeController : MonoBehaviour {
             Time.timeScale = .75f;
             GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = .75f;
             slowPowerupTimer += Time.deltaTime;
-            Debug.Log("Slow Power Timer: " + slowPowerupTimer);
             if (slowPowerupTimer >= slowPowerupTimerReset)
             {
-                Debug.Log("Slow Powerup Over");
                 slowPowerupTimer = 0f;
                 isSlowPower = !isSlowPower;
             }
@@ -175,9 +170,10 @@ public class ShoeController : MonoBehaviour {
                 case 1: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking1; break;
                 case 2: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking2; break;
                 case 3: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking3; break;
+                case 4: gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking2; break;
             }
             
-            if (animationIndex >= 3)
+            if (animationIndex >= 4)
             {
                 animationIndex = 0;
             }
