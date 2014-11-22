@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FootBehaviorScript : MonoBehaviour {
+public class ShadowBehaviorScript : MonoBehaviour {
     public GameObject shoe;
     GameObject shadow;
     GameObject foot;
@@ -26,14 +26,30 @@ public class FootBehaviorScript : MonoBehaviour {
 	
         if (isSeeking)
         {
+            shadow.gameObject.renderer.active = true;
             ShadowSeek();
         }
+        else if (!isSeeking)
+        {
+            //Hide the shadow and do not seek and whatnot stuffs.
+            shadow.gameObject.renderer.active = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ToggleSeeking();
+        }
 	}
+
+    void ToggleSeeking()
+    {
+        isSeeking = !isSeeking;
+        Debug.Log("Seeking: " + isSeeking);
+    }
 
     //This will trigger the shadow to start seeking the shoe. 
     void ShadowSeek()
     {
-
         if (hitRightBound)
         {
             shadow.gameObject.rigidbody.MovePosition(new Vector3(shadow.gameObject.transform.position.x - shadowSeekSpeed * Time.deltaTime, shadow.gameObject.transform.position.y, shadow.gameObject.transform.position.z));
@@ -43,7 +59,6 @@ public class FootBehaviorScript : MonoBehaviour {
                 hitRightBound = false;
             }
         }
-
         if (!hitRightBound)
         {
             shadow.gameObject.rigidbody.MovePosition(new Vector3(shadow.gameObject.transform.position.x + shadowSeekSpeed * Time.deltaTime, shadow.gameObject.transform.position.y, shadow.gameObject.transform.position.z));
@@ -53,8 +68,6 @@ public class FootBehaviorScript : MonoBehaviour {
                 hitRightBound = true;
             }
         }
-
-       
         /*TODO: Move left to right.
          * If Shoe in collider for X time, SpawnFoot();
          */
@@ -69,7 +82,6 @@ public class FootBehaviorScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-       
         Debug.Log(col.gameObject.name + "Collided!");
     }
 
@@ -90,6 +102,7 @@ public class FootBehaviorScript : MonoBehaviour {
         if (col.gameObject == shoe)
         {
             shadowTimer = 0f;
+            Debug.Log("Timer Reset to 0f!");
         }
     }
 }
