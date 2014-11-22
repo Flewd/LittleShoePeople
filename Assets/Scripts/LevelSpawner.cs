@@ -34,17 +34,36 @@ public class LevelSpawner : MonoBehaviour {
         musicPlayer = gameObject.GetComponent<AudioSource>();
 
         eventsList = new musicEvent[]{
-        new musicEvent(musicEventType.foot, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
+        new musicEvent(musicEventType.nail, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
         new musicEvent(musicEventType.nail, 8.892f),
         new musicEvent((musicEventType)Random.Range(2, 5), 12.943f),
         new musicEvent(musicEventType.nail, 20.97f),
+        new musicEvent(musicEventType.mouseTrap, 24),
+        new musicEvent(musicEventType.nail, 26),
+        new musicEvent((musicEventType)Random.Range(2, 5), 30),
         new musicEvent(musicEventType.foot, 35.908f),
         new musicEvent(musicEventType.mouseTrap, 39.908f),
         new musicEvent(musicEventType.nail, 41.87f),
+        new musicEvent(musicEventType.nail, 44),
+        new musicEvent(musicEventType.nail, 46),
+        new musicEvent(musicEventType.nail, 48),
+        new musicEvent(musicEventType.nail, 50),
+        new musicEvent(musicEventType.nail, 52),
         new musicEvent((musicEventType)Random.Range(2, 5), 54.964f),
+        new musicEvent(musicEventType.nail, 58),
+        new musicEvent(musicEventType.mouseTrap, 60),
+        new musicEvent(musicEventType.mouseTrap, 62),
         new musicEvent(musicEventType.nail, 66.858f),
+        new musicEvent(musicEventType.nail, 70),
         new musicEvent(musicEventType.foot, 73.895f),
         new musicEvent(musicEventType.nail, 80.679f),
+        new musicEvent(musicEventType.nail, 84),
+        new musicEvent(musicEventType.mouseTrap, 86),
+        new musicEvent(musicEventType.nail, 90),
+        new musicEvent((musicEventType)Random.Range(2, 5), 94),
+        new musicEvent(musicEventType.nail, 96),
+        new musicEvent(musicEventType.nail, 98),
+        new musicEvent(musicEventType.mouseTrap, 100),
         new musicEvent((musicEventType)Random.Range(2, 5), 103.6f),
         new musicEvent(musicEventType.foot, 111.904f)
     };
@@ -114,7 +133,7 @@ public class LevelSpawner : MonoBehaviour {
     void spawnSlow()
     {
         GameObject slow = Instantiate(Resources.Load("SlowPowerUp", typeof(GameObject))) as GameObject;
-        slow.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.85f, -0.5f);
+        slow.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1f, -0.5f);
         GameObject.Destroy(slow, 10);
     }
     void spawnSpeed()

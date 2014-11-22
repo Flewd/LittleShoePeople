@@ -116,7 +116,7 @@ public class ShoeController : MonoBehaviour {
                 if (onMouseTrap == false)
                 {
                     Audio_hop.audio.Play();
-                    jumpCounter = 1.5f;
+                    jumpCounter = 1.35f;
                     gameObject.rigidbody.AddForce(0, 700, 0);
                     iTween.RotateAdd(gameObject, ht);
                     lockFork = true;
@@ -124,7 +124,7 @@ public class ShoeController : MonoBehaviour {
                 else
                 {
                     Audio_mousetrap.audio.Play();
-                    jumpCounter = 2f;
+                    jumpCounter = 1.8f;
                     gameObject.rigidbody.AddForce(0, 1100, 0);
                     iTween.RotateAdd(gameObject, htm);
                     if (currentMouseTrap != null)
