@@ -70,6 +70,7 @@ public class ShoeController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.C))
         {
             //Show Credits
+            Application.LoadLevel("Credits");
         }
     }
 
