@@ -11,6 +11,7 @@ public class ShoeController : MonoBehaviour {
     public GameObject InGameUI;
     public GameObject PostGameUI;
 
+    public float scoreToAdd; 
     float jumpCounter = 0;
     float needleCounter = 0;
 
@@ -98,6 +99,11 @@ public class ShoeController : MonoBehaviour {
         {
             gameObject.SendMessage("SubtractHealth", 25f);
             other.collider.enabled = false;
+        }
+        if (other.gameObject.tag == "coin")
+        {
+            gameObject.GetComponent<PlayerScoreScript>().AddScore(scoreToAdd);
+            Destroy(other.gameObject);
         }
     }
 }
