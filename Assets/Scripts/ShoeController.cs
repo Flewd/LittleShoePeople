@@ -33,6 +33,7 @@ public class ShoeController : MonoBehaviour {
 
     float footCooldown = 2;
     bool onMouseTrap = false;
+    GameObject currentMouseTrap;
 
 	// Use this for initialization
 	void Start () {
@@ -100,6 +101,11 @@ public class ShoeController : MonoBehaviour {
                 {
                     jumpCounter = 2f;
                     gameObject.rigidbody.AddForce(0, 1100, 0);
+                    if (currentMouseTrap != null)
+                    {
+                        Debug.Log(currentMouseTrap.name);
+                        currentMouseTrap.GetComponent<MouseTrapController>().switchMouseTrapSprite();
+                    }
                 }
                 //          gameObject.rigidbody.AddRelativeTorque(0, 0, 35);
             }
@@ -239,6 +245,7 @@ public class ShoeController : MonoBehaviour {
         if (other.gameObject.tag == "mouseTrap")
         {
             onMouseTrap = true;
+            currentMouseTrap = other.gameObject;
         }
     }
 
