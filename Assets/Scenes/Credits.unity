@@ -577,7 +577,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 725996435}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b397f8d013d4a1147899e84f8ff47c42, type: 3}
   m_Name: 
@@ -688,6 +688,8 @@ MonoBehaviour:
     WINGS OVER WORCESTER
 
     BLUE JEANS PIZZA''S DELIVERY GUY
+
+    JACOB''S MOUSETRAP DESIGN
 
 '
 --- !u!222 &725996439
