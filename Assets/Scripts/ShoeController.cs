@@ -14,6 +14,13 @@ public class ShoeController : MonoBehaviour {
     public Sprite bootWalking1;
     public Sprite bootWalking2;
     public Sprite bootWalking3;
+
+    public GameObject Audio_hop;
+    public GameObject Audio_mousetrap;
+    public GameObject Audio_forkstab;
+    public GameObject Audio_speedup;
+    public GameObject Audio_slowdown;
+
     float animationTimer = 0.5f;
     int animationIndex = 1;
 
@@ -23,7 +30,7 @@ public class ShoeController : MonoBehaviour {
     float speedPowerupTimer = 0f;
     public float speedPowerupTimerReset = 5f; //The time in which the shoe people get back out of the shoe an the rollerskates leave and time is slow again. long comments ftw! hi mike! 
     float slowPowerupTimer = 0f;
-    public float slowPowerupTimerReset = 0.375f;
+    public float slowPowerupTimerReset = 2f;
 
     public GameObject needle;
     Vector3 needleUpOffset = new Vector3(0, 1.5f, 0);
@@ -37,9 +44,8 @@ public class ShoeController : MonoBehaviour {
 
     Hashtable ht = new Hashtable(); //normal jump
     Hashtable htm = new Hashtable();//mousetrap jump
-    Hashtable htf = new Hashtable();//fork tween
+    
     bool lockFork = false;
-    bool lockJump = false;
 
 	// Use this for initialization
 	void Start () {
@@ -109,6 +115,7 @@ public class ShoeController : MonoBehaviour {
             {
                 if (onMouseTrap == false)
                 {
+                    Audio_hop.audio.Play();
                     jumpCounter = 1.5f;
                     gameObject.rigidbody.AddForce(0, 700, 0);
                     iTween.RotateAdd(gameObject, ht);
@@ -116,6 +123,7 @@ public class ShoeController : MonoBehaviour {
                 }
                 else
                 {
+                    Audio_mousetrap.audio.Play();
                     jumpCounter = 2f;
                     gameObject.rigidbody.AddForce(0, 1100, 0);
                     iTween.RotateAdd(gameObject, htm);
@@ -132,7 +140,7 @@ public class ShoeController : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.S) && needleCounter <= 0 && needleDown == true)
             {
-
+                Audio_forkstab.audio.Play();
                 jumpCounter = 0.6f;
                 needle.transform.position = needle.transform.position + needleUpOffset;
                 needle.collider.enabled = true;
@@ -151,6 +159,7 @@ public class ShoeController : MonoBehaviour {
         if (isSpeedPower)
         {
             Time.timeScale = 1.5f;
+            Audio_speedup.audio.Play();
             GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1.5f;
             speedPowerupTimer += Time.deltaTime;
             if (speedPowerupTimer >= speedPowerupTimerReset)
@@ -163,6 +172,7 @@ public class ShoeController : MonoBehaviour {
         if (isSlowPower)
         {
             Time.timeScale = .75f;
+            Audio_slowdown.audio.Play();
             GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = .75f;
             slowPowerupTimer += Time.deltaTime;
             if (slowPowerupTimer >= slowPowerupTimerReset)
