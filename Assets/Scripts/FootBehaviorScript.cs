@@ -23,7 +23,7 @@ public class FootBehaviorScript : MonoBehaviour {
         }
 	}
     
-    void ToggleDrop()
+    public void ToggleDrop()
     {
         dropTheShoe = !dropTheShoe;
     }
@@ -34,7 +34,7 @@ public class FootBehaviorScript : MonoBehaviour {
         gameObject.transform.localPosition = new Vector3(0f, shoe.transform.position.y + 7.5f, 0f);
     }
 
-    void Drop()
+    public void Drop()
     {
         gameObject.transform.SetParent(null,true);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - dropSpeed * Time.deltaTime, gameObject.transform.position.x);
