@@ -6,6 +6,9 @@ TagManager:
   - nail
   - foot
   - needle
+  - coin
+  - speed
+  - slow
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
