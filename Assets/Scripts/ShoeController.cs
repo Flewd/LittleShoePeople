@@ -90,6 +90,7 @@ public class ShoeController : MonoBehaviour {
             needleDown = true;
         }
 
+        //This is the toggle for the speedPowerUp and adjusts the timescale and the pitch of the music.
         if (isSpeedPower)
         {
             Time.timeScale = 1.5f;
