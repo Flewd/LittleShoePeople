@@ -35,9 +35,24 @@ public class ShoeController : MonoBehaviour {
     bool onMouseTrap = false;
     GameObject currentMouseTrap;
 
+    Hashtable ht = new Hashtable(); //normal jump
+    Hashtable htm = new Hashtable();//mousetrap jump
+    Hashtable htf = new Hashtable();//fork tween
+    bool lockFork = false;
+    bool lockJump = false;
+
 	// Use this for initialization
 	void Start () {
-        
+
+	ht.Add("z",-360);
+	ht.Add("time",1.1f);
+    ht.Add("easetype", iTween.EaseType.linear);
+    ht.Add("oncomplete", "unlockFork");
+
+    htm.Add("z", -720);
+    htm.Add("time", 1.1f);
+    htm.Add("easetype", iTween.EaseType.linear);
+    htm.Add("oncomplete", "unlockFork");        
 	}
 	
 	// Update is called once per frame
@@ -96,35 +111,37 @@ public class ShoeController : MonoBehaviour {
                 {
                     jumpCounter = 1.5f;
                     gameObject.rigidbody.AddForce(0, 700, 0);
+                    iTween.RotateAdd(gameObject, ht);
+                    lockFork = true;
                 }
                 else
                 {
                     jumpCounter = 2f;
                     gameObject.rigidbody.AddForce(0, 1100, 0);
+                    iTween.RotateAdd(gameObject, htm);
                     if (currentMouseTrap != null)
                     {
                         currentMouseTrap.GetComponent<MouseTrapController>().switchMouseTrapSprite();
                     }
+                    lockFork = true;
                 }
-                //          gameObject.rigidbody.AddRelativeTorque(0, 0, 35);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && needleCounter <= 0 && needleDown == true)
+        if (lockFork == false)
         {
+            if (Input.GetKeyDown(KeyCode.S) && needleCounter <= 0 && needleDown == true)
+            {
 
-            //needle.transform.localPosition = Vector3.Lerp(needle.transform.localPosition, needle.transform.localPosition + needleUpOffset, 10);
-
-            needle.transform.position = needle.transform.position + needleUpOffset;
-            needle.collider.enabled = true;
-            needleCounter = 0.50F;
-            needleDown = false;
+                jumpCounter = 0.6f;
+                needle.transform.position = needle.transform.position + needleUpOffset;
+                needle.collider.enabled = true;
+                needleCounter = 0.50F;
+                needleDown = false;
+            }
         }
         if (needleCounter <= 0.25F && needleDown == false)
         {
-
-            //needle.transform.localPosition = Vector3.Lerp(needle.transform.localPosition, needle.transform.localPosition - needleUpOffset, 10);
-
             needle.transform.position = needle.transform.position - needleUpOffset;
             needleDown = true;
             needle.collider.enabled = false;
@@ -251,5 +268,9 @@ public class ShoeController : MonoBehaviour {
         {
             onMouseTrap = false;
         } 
+    }
+    void unlockFork()
+    {
+        lockFork = false;
     }
 }
