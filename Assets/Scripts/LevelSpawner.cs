@@ -65,7 +65,8 @@ public class LevelSpawner : MonoBehaviour {
         new musicEvent(musicEventType.nail, 98),
         new musicEvent(musicEventType.mouseTrap, 100),
         new musicEvent((musicEventType)Random.Range(2, 5), 103.6f),
-        new musicEvent(musicEventType.foot, 111.904f)
+        new musicEvent(musicEventType.foot, 111.904f),
+        new musicEvent(musicEventType.foot, 113.904f)
     };
 
 	}
