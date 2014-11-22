@@ -4,6 +4,8 @@ using System.Collections;
 public class HealthSystemScript : MonoBehaviour {
     public float totalHealth = 100f;
     public float currentHealth;
+
+    public GameObject Audio_hurt;
 	// Use this for initialization
 	void Start () {
         currentHealth = totalHealth;
@@ -19,6 +21,7 @@ public class HealthSystemScript : MonoBehaviour {
         {
             TriggerGameOver();
         }
+        Audio_hurt.audio.Play();
         currentHealth -= amount;
         
     }
