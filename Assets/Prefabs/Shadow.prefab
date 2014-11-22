@@ -44,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.52690005, y: -3.38610005, z: 0}
+  m_LocalPosition: {x: 18.711853, y: -3.42567086, z: 0}
   m_LocalScale: {x: 1, y: .340000004, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -100,10 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaa80cacb2196445a8abdd9d108037a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoe: {fileID: 0}
-  shadowSeekSpeed: 2.5
-  stompTime: 1.29999995
-  wiggleRoom: 1
+  foot: {fileID: 100002}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,8 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4964bf7969921cd48a9cb2d5d4f2789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropSpeed: 25
-  shadow: {fileID: 0}
+  shadow: {fileID: 100000}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
