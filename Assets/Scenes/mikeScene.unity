@@ -378,6 +378,7 @@ GameObject:
   - 114: {fileID: 818996968}
   - 114: {fileID: 818996973}
   - 65: {fileID: 818996974}
+  - 114: {fileID: 818996975}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -414,6 +415,9 @@ MonoBehaviour:
   PreGameUI: {fileID: 481738075}
   InGameUI: {fileID: 1632154190}
   PostGameUI: {fileID: 2130117336}
+  scoreToAdd: 100
+  speedPowerupTimerReset: 5
+  slowPowerupTimerReset: .375
   needle: {fileID: 42681474}
 --- !u!54 &818996969
 Rigidbody:
@@ -500,6 +504,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: .376359582, z: 1}
   m_Center: {x: 0, y: -.311820388, z: 0}
+--- !u!114 &818996975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 818996966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0e0d5ba9080544cace9d012a4667b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1 &1033556844
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,6 +864,10 @@ Prefab:
       propertyPath: m_Center.y
       value: -.311967492
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 398d3543e8a8ed7458f7c3c356590df0, type: 2}
+      propertyPath: scoreToAdd
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 13600000, guid: 398d3543e8a8ed7458f7c3c356590df0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 398d3543e8a8ed7458f7c3c356590df0, type: 2}
@@ -986,6 +1006,84 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1518928133}
+--- !u!1 &1567990545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1567990546}
+  - 222: {fileID: 1567990549}
+  - 114: {fileID: 1567990548}
+  - 114: {fileID: 1567990547}
+  m_Layer: 5
+  m_Name: Score-Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1567990546
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567990545}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1632154191}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -91, y: 69}
+  m_SizeDelta: {x: 444.290009, y: 51.4000015}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1567990547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567990545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3101a37336bfcb44c92e95359f0d6076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1567990548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567990545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: fe510c0edd11135489ed88ac92eee3a9, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Score: 100'
+--- !u!222 &1567990549
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567990545}
 --- !u!1 &1572004997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1270,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1327570864}
+  - {fileID: 1567990546}
   m_Father: {fileID: 1937520213}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
