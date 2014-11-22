@@ -12,14 +12,14 @@ public class mainMenuTween : MonoBehaviour {
 
         if (direction == true)
         {
-            ht.Add("z", 1.75f);
+            ht.Add("z", -26.75f);
             ht.Add("time", 0.5f);
             ht.Add("easetype", iTween.EaseType.linear);
             ht.Add("loopType", iTween.LoopType.pingPong);
         }
         else
         {
-            ht.Add("z", -1.75f);
+            ht.Add("z", 26.75f);
             ht.Add("time", 0.6f);
             ht.Add("easetype", iTween.EaseType.linear);
             ht.Add("loopType", iTween.LoopType.pingPong);
