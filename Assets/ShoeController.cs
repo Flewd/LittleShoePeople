@@ -47,6 +47,15 @@ public class ShoeController : MonoBehaviour {
         
 	}
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "nail")
+        {
+            Debug.Log("NAIL HIT");
+            collision.collider.enabled = false;
+        }
+    }
+
     /*
     void oldMovement()
     {
