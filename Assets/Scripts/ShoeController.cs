@@ -14,10 +14,14 @@ public class ShoeController : MonoBehaviour {
     public float scoreToAdd; 
     float jumpCounter = 0;
     float needleCounter = 0;
+    float speedPowerupTimer = 0f;
+    public float speedPowerupTimerReset = 5f; //The time in which the shoe people get back out of the shoe an the rollerskates leave and time is slow again. long comments ftw! hi mike! 
+
 
     public GameObject needle;
     Vector3 needleUpOffset = new Vector3(0, 1, 0);
     bool needleDown = true;
+    bool isSpeedPower = false;
 
 	// Use this for initialization
 	void Start () {
@@ -85,6 +89,25 @@ public class ShoeController : MonoBehaviour {
             needle.transform.position = needle.transform.position - needleUpOffset;
             needleDown = true;
         }
+
+        if (isSpeedPower)
+        {
+            Time.timeScale = 1.5f;
+            GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1.5f;
+            speedPowerupTimer += Time.deltaTime;
+            if (speedPowerupTimer >= speedPowerupTimerReset)
+            {
+                Debug.Log("Speed Power Up Expired;;;;;;");
+                speedPowerupTimer = 0f;
+                isSpeedPower = !isSpeedPower;
+            }
+            
+        }
+        else if (!isSpeedPower)
+        {
+            Time.timeScale = 1f;
+            GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1f;
+        }
     }
     void endUpdate()
     {
@@ -103,6 +126,11 @@ public class ShoeController : MonoBehaviour {
         if (other.gameObject.tag == "coin")
         {
             gameObject.GetComponent<PlayerScoreScript>().AddScore(scoreToAdd);
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "speed") //do drugs and stuff
+        {
+            isSpeedPower = true;
             Destroy(other.gameObject);
         }
     }
