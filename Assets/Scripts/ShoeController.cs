@@ -48,6 +48,7 @@ public class ShoeController : MonoBehaviour {
     Hashtable htm = new Hashtable();//mousetrap jump
     
     bool lockFork = false;
+    public bool lockMovement = false;
 
 	// Use this for initialization
 	void Start () {
@@ -110,7 +111,10 @@ public class ShoeController : MonoBehaviour {
         footCooldown += Time.deltaTime;
         pinTriggerTimer += Time.deltaTime;
 
-        gameObject.transform.position += new Vector3(6 * Time.deltaTime, 0, 0);
+        if (lockMovement == false)
+        {
+            gameObject.transform.position += new Vector3(6 * Time.deltaTime, 0, 0);
+        }
 
         if (jumpCounter <= 0)
         {

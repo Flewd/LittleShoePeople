@@ -3,6 +3,9 @@ using System.Collections;
 
 public class endGameTrigger : MonoBehaviour {
 
+    public GameObject toiletSplash;
+    public GameObject toiletPlatform;
+
 	// Use this for initialization
 	void Start () {
         
@@ -19,15 +22,25 @@ public class endGameTrigger : MonoBehaviour {
         if (other.gameObject.name == "Player")
         {
             StartCoroutine(BeginCutScene());
+            
         }
 
     }
 
 
     IEnumerator BeginCutScene()
-    {       
-         yield return 6.8f;    //Wait one frame
+    {
+        yield return new WaitForSeconds(6.8f);
          gameObject.GetComponent<AudioSource>().Play();
+         toiletSplash.SetActive(true);
+         toiletPlatform.SetActive(false);
+         StartCoroutine(WaitThenSwitchCredits());
   
+    }
+
+    IEnumerator WaitThenSwitchCredits()
+    {
+        yield return new WaitForSeconds(4);
+        Application.LoadLevel("Credits");
     }
 }
