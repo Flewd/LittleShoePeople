@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c00920b40b40e5419b10a72304829fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
   needle: {fileID: 42681474}
 --- !u!54 &818996969
 Rigidbody:
@@ -510,6 +511,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 179651339}
   m_GameObject: {fileID: 875652395}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1033556844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1033556846}
+  - 114: {fileID: 1033556845}
+  m_Layer: 0
+  m_Name: LevelSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1033556845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1033556844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e851e70c74374c341a75578011c70191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventsList:
+  - eventType: 0
+    eventTime: 2
+  - eventType: 0
+    eventTime: 4
+--- !u!4 &1033556846
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1033556844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.477272511, y: -.576803982, z: -2.60107994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1073615557
 GameObject:
   m_ObjectHideFlags: 0
