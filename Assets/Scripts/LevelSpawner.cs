@@ -33,7 +33,6 @@ public class LevelSpawner : MonoBehaviour {
 	void Start () {
         musicPlayer = gameObject.GetComponent<AudioSource>();
 
-
         eventsList = new musicEvent[]{
         new musicEvent(musicEventType.nail, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
         new musicEvent(musicEventType.nail, 8.892f),
@@ -84,7 +83,8 @@ public class LevelSpawner : MonoBehaviour {
                 point.transform.position = new Vector3(player.transform.position.x + 12,-1, 0);
                 GameObject.Destroy(point, 10);
 
-                pointCounter = 2;
+                point.GetComponent<AudioSource>().pitch = Random.Range(0.5f, 1.5f);
+                pointCounter = Random.Range(1,4) *2;
             }
         }
 	}

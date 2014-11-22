@@ -95,7 +95,7 @@ public class ShoeController : MonoBehaviour {
                 if (onMouseTrap == false)
                 {
                     jumpCounter = 1.5f;
-                    gameObject.rigidbody.AddForce(0, 650, 0);
+                    gameObject.rigidbody.AddForce(0, 700, 0);
                 }
                 else
                 {
