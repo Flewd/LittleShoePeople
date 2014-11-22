@@ -6,5 +6,5 @@ class CreditsScript (MonoBehaviour):
 		pass
 	
 	def Update ():
-		transform.Translate((Vector3.up * 25 * Time.deltaTime), Space.World)
+		transform.Translate((Vector3.up * 50 * Time.deltaTime), Space.World)
 
