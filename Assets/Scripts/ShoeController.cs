@@ -16,12 +16,14 @@ public class ShoeController : MonoBehaviour {
     float needleCounter = 0;
     float speedPowerupTimer = 0f;
     public float speedPowerupTimerReset = 5f; //The time in which the shoe people get back out of the shoe an the rollerskates leave and time is slow again. long comments ftw! hi mike! 
-
+    float slowPowerupTimer = 0f;
+    public float slowPowerupTimerReset = 0.375f;
 
     public GameObject needle;
     Vector3 needleUpOffset = new Vector3(0, 1, 0);
     bool needleDown = true;
     bool isSpeedPower = false;
+    bool isSlowPower = false;
 
 	// Use this for initialization
 	void Start () {
@@ -96,6 +98,7 @@ public class ShoeController : MonoBehaviour {
             Time.timeScale = 1.5f;
             GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1.5f;
             speedPowerupTimer += Time.deltaTime;
+            Debug.Log("Speed Powerup Timer: " + speedPowerupTimer);
             if (speedPowerupTimer >= speedPowerupTimerReset)
             {
                 Debug.Log("Speed Power Up Expired;;;;;;");
@@ -104,11 +107,25 @@ public class ShoeController : MonoBehaviour {
             }
             
         }
-        else if (!isSpeedPower)
+        if (isSlowPower)
+        {
+            Time.timeScale = .75f;
+            GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = .75f;
+            slowPowerupTimer += Time.deltaTime;
+            Debug.Log("Slow Power Timer: " + slowPowerupTimer);
+            if (slowPowerupTimer >= slowPowerupTimerReset)
+            {
+                Debug.Log("Slow Powerup Over");
+                slowPowerupTimer = 0f;
+                isSlowPower = !isSlowPower;
+            }
+        }
+        if (!isSpeedPower && !isSlowPower)
         {
             Time.timeScale = 1f;
             GameObject.Find("LevelSpawner").GetComponent<AudioSource>().pitch = 1f;
         }
+        
     }
     void endUpdate()
     {
@@ -132,6 +149,19 @@ public class ShoeController : MonoBehaviour {
         if (other.gameObject.tag == "speed") //do drugs and stuff
         {
             isSpeedPower = true;
+            if (isSlowPower)
+            {
+                isSlowPower = !isSlowPower; //Toggle the other speed powerup because both being active will fuck things ups.
+            }
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "slow")
+        {
+            isSlowPower = true;
+            if (isSpeedPower)
+            {
+                isSpeedPower = !isSpeedPower; //Toggle the other speed powerup because both being active will fuck things ups.
+            }
             Destroy(other.gameObject);
         }
     }
