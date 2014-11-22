@@ -7,6 +7,10 @@ public class ShoeController : MonoBehaviour {
     public enum GameStates { start, play, end };
     public GameStates gameState = GameStates.start;
 
+    public GameObject PreGameUI;
+    public GameObject InGameUI;
+    public GameObject PostGameUI;
+
     float jumpCounter = 0;
     float needleCounter = 0;
 
@@ -39,14 +43,22 @@ public class ShoeController : MonoBehaviour {
 
     void startUpdate()
     {
+        PreGameUI.SetActive(true);
+        InGameUI.SetActive(false);
+        PostGameUI.SetActive(false);
         if(Input.GetKeyDown(KeyCode.Space))
         {
             gameState = GameStates.play;
+            
         }
     }
 
     void playUpdate()
     {
+        PreGameUI.SetActive(false);
+        InGameUI.SetActive(true);
+        PostGameUI.SetActive(false);
+
         jumpCounter -= Time.deltaTime;
         needleCounter -= Time.deltaTime;
 
@@ -76,7 +88,9 @@ public class ShoeController : MonoBehaviour {
     }
     void endUpdate()
     {
-
+        PreGameUI.SetActive(false);
+        InGameUI.SetActive(false);
+        PostGameUI.SetActive(true);
     }
 
     void OnCollisionEnter(Collision collision)
