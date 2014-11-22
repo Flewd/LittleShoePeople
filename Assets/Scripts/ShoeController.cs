@@ -53,6 +53,8 @@ public class ShoeController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+    Time.timeScale = 1f;
+
 	ht.Add("z",-360);
 	ht.Add("time",1.1f);
     ht.Add("easetype", iTween.EaseType.linear);
