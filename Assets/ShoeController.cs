@@ -4,6 +4,9 @@ using System.Collections;
 
 public class ShoeController : MonoBehaviour {
 
+    public enum GameStates { start, play, end };
+    public GameStates gameState = GameStates.start;
+
     float jumpCounter = 0;
     float needleCounter = 0;
 
@@ -13,11 +16,37 @@ public class ShoeController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+       
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        switch (gameState)
+        {
+            case GameStates.start:
+                startUpdate();
+                break;
+            case GameStates.play:
+                playUpdate();
+                break;
+            case GameStates.end:
+                endUpdate();
+                break;
+        }
+	}
+
+    void startUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            gameState = GameStates.play;
+        }
+    }
+
+    void playUpdate()
+    {
         jumpCounter -= Time.deltaTime;
         needleCounter -= Time.deltaTime;
 
@@ -29,7 +58,7 @@ public class ShoeController : MonoBehaviour {
             {
                 jumpCounter = 2;
                 gameObject.rigidbody.AddForce(0, 400, 0);
-      //          gameObject.rigidbody.AddRelativeTorque(0, 0, 35);
+                //          gameObject.rigidbody.AddRelativeTorque(0, 0, 35);
             }
         }
 
@@ -44,8 +73,11 @@ public class ShoeController : MonoBehaviour {
             needle.transform.position = needle.transform.position - needleUpOffset;
             needleDown = true;
         }
-        
-	}
+    }
+    void endUpdate()
+    {
+
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -55,32 +87,4 @@ public class ShoeController : MonoBehaviour {
             collision.collider.enabled = false;
         }
     }
-
-    /*
-    void oldMovement()
-    {
-        jumpCounter -= Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            gameObject.rigidbody.AddForce(10, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            gameObject.rigidbody.AddForce(-10, 0, 0);
-        }
-        if (jumpCounter <= 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                gameObject.rigidbody.AddForce(0, 400, 0);
-                jumpCounter = 3;
-
-                gameObject.rigidbody.AddRelativeTorque(new Vector3(0, 0, 400));
-
-            }
-        }
-    }
-     * */
-
 }
