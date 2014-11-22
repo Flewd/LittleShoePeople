@@ -888,6 +888,22 @@ MonoBehaviour:
     eventTime: 12.9429998
   - eventType: 0
     eventTime: 20.9699993
+  - eventType: 1
+    eventTime: 35.9080009
+  - eventType: 0
+    eventTime: 41.8699989
+  - eventType: 0
+    eventTime: 54.9640007
+  - eventType: 0
+    eventTime: 66.8580017
+  - eventType: 1
+    eventTime: 73.8949966
+  - eventType: 0
+    eventTime: 80.6790009
+  - eventType: 0
+    eventTime: 103.599998
+  - eventType: 1
+    eventTime: 111.903999
 --- !u!4 &1033556846
 Transform:
   m_ObjectHideFlags: 0

@@ -70,7 +70,7 @@ public class LevelSpawner : MonoBehaviour {
     void spawnNail()
     {
         GameObject nail = Instantiate(Resources.Load("Nail", typeof(GameObject))) as GameObject;
-        nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.7f, -0.5f);
+        nail.transform.position = new Vector3(player.transform.position.x + 18 + jumpDistance, -1.85f, -0.5f);
         GameObject.Destroy(nail, 10);
 
     }
