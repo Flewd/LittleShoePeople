@@ -224,7 +224,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 566693685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.99000001, y: .800000012, z: 0}
+  m_LocalPosition: {x: -2.99000001, y: -1.778, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 775267538}
@@ -253,7 +253,6 @@ GameObject:
   - 33: {fileID: 775267541}
   - 136: {fileID: 775267540}
   - 23: {fileID: 775267539}
-  - 54: {fileID: 775267542}
   m_Layer: 0
   m_Name: Needle
   m_TagString: Untagged
@@ -268,7 +267,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 775267537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0699999332, y: -.0490000248, z: 0}
+  m_LocalPosition: {x: -.0700000003, y: .0140000004, z: 0}
   m_LocalScale: {x: .25, y: .5, z: .25}
   m_Children: []
   m_Father: {fileID: 566693690}
@@ -313,21 +312,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 775267537}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &775267542
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 775267537}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1572004997
 GameObject:
   m_ObjectHideFlags: 0
