@@ -4220,6 +4220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoePlayer: {fileID: 818996966}
+  toiletBegan: 0
 --- !u!1 &1632154190
 GameObject:
   m_ObjectHideFlags: 0
