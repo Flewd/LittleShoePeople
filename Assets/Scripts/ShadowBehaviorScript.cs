@@ -74,7 +74,8 @@ public class ShadowBehaviorScript : MonoBehaviour {
         //TODO: Foot moves straight down. 
     }
 
-   /* void OnTriggerEnter(Collider col)
+   /* This shit aint needed no more brah. 
+    * void OnTriggerEnter(Collider col)
     {
         Debug.Log(col.gameObject.name + "Collided!");
     }

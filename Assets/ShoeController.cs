@@ -99,6 +99,7 @@ public class ShoeController : MonoBehaviour {
         {
             Debug.Log("NAIL HIT");
             collision.collider.enabled = false;
+            gameObject.SendMessage("SubtractHealth", 25f);
         }
     }
 }
