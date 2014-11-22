@@ -66,6 +66,11 @@ public class ShoeController : MonoBehaviour {
             gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking1;
             GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>().startGenerator();
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            //Show Credits
+        }
     }
 
     void playUpdate()
@@ -165,6 +170,11 @@ public class ShoeController : MonoBehaviour {
         PreGameUI.SetActive(false);
         InGameUI.SetActive(false);
         PostGameUI.SetActive(true);
+
+        if (Input.anyKeyDown)
+        {
+            Application.LoadLevel(Application.loadedLevelName);
+        }
     }
 
     void OnTriggerEnter(Collider other)
