@@ -326,6 +326,7 @@ GameObject:
   - 65: {fileID: 1346045180}
   - 23: {fileID: 1346045179}
   - 54: {fileID: 1346045183}
+  - 114: {fileID: 1346045184}
   m_Layer: 0
   m_Name: Shoe
   m_TagString: Untagged
@@ -399,6 +400,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1346045184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1346045178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c00920b40b40e5419b10a72304829fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needle: {fileID: 0}
 --- !u!1 &1526913637
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +424,7 @@ GameObject:
   - 92: {fileID: 1526913640}
   - 124: {fileID: 1526913639}
   - 81: {fileID: 1526913638}
+  - 114: {fileID: 1526913643}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -483,3 +497,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1526913643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1526913637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540a19f70bc9d0f44bc2b82937a86bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoePlayer: {fileID: 0}
