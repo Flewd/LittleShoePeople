@@ -36,15 +36,16 @@ public class LevelSpawner : MonoBehaviour {
         eventsList = new musicEvent[]{
         new musicEvent(musicEventType.nail, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
         new musicEvent(musicEventType.nail, 8.892f),
-        new musicEvent(musicEventType.nail, 12.943f),
+        new musicEvent((musicEventType)Random.Range(0, 5), 12.943f),
         new musicEvent(musicEventType.nail, 20.97f),
         new musicEvent(musicEventType.foot, 35.908f),
+        new musicEvent(musicEventType.mouseTrap, 39.908f),
         new musicEvent(musicEventType.nail, 41.87f),
-        new musicEvent(musicEventType.nail, 54.964f),
+        new musicEvent((musicEventType)Random.Range(0, 5), 54.964f),
         new musicEvent(musicEventType.nail, 66.858f),
         new musicEvent(musicEventType.foot, 73.895f),
         new musicEvent(musicEventType.nail, 80.679f),
-        new musicEvent(musicEventType.nail, 103.6f),
+        new musicEvent((musicEventType)Random.Range(0, 5), 103.6f),
         new musicEvent(musicEventType.foot, 111.904f)
     };
 
