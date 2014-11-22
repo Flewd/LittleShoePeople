@@ -6,7 +6,7 @@ public class LevelSpawner : MonoBehaviour {
 
     public GameObject player;
 
-    public enum musicEventType {nail,foot,mouseTrap,slow,speed};
+    public enum musicEventType {nail=0,foot=1,mouseTrap=2,slow=3,speed=4};
 
     public class musicEvent
     {
@@ -21,7 +21,7 @@ public class LevelSpawner : MonoBehaviour {
     }
 
     musicEvent[] eventsList = new musicEvent[]{
-        new musicEvent(musicEventType.nail, 4.9f),
+        new musicEvent(musicEventType.nail, 4.9f),          //random example: new musicEvent(Random.Range(0, 5), 4.9f)
         new musicEvent(musicEventType.nail, 8.892f),
         new musicEvent(musicEventType.nail, 12.943f),
         new musicEvent(musicEventType.nail, 20.97f),
