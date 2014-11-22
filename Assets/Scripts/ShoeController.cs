@@ -31,6 +31,7 @@ public class ShoeController : MonoBehaviour {
     public float speedPowerupTimerReset = 5f; //The time in which the shoe people get back out of the shoe an the rollerskates leave and time is slow again. long comments ftw! hi mike! 
     float slowPowerupTimer = 0f;
     public float slowPowerupTimerReset = 2f;
+    float pinTriggerTimer = 1;
 
     public GameObject needle;
     Vector3 needleUpOffset = new Vector3(0, 1.5f, 0);
@@ -107,6 +108,7 @@ public class ShoeController : MonoBehaviour {
         jumpCounter -= Time.deltaTime;
         needleCounter -= Time.deltaTime;
         footCooldown += Time.deltaTime;
+        pinTriggerTimer += Time.deltaTime;
 
         gameObject.transform.position += new Vector3(6 * Time.deltaTime, 0, 0);
 
@@ -155,14 +157,17 @@ public class ShoeController : MonoBehaviour {
 
         if (lockFork == false)
         {
-            if (Input.GetKeyDown(KeyCode.S) && needleCounter <= 0 && needleDown == true)
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
             {
-                Audio_forkstab.audio.Play();
-                jumpCounter = 0.6f;
-                needle.transform.position = needle.transform.position + needleUpOffset;
-                needle.collider.enabled = true;
-                needleCounter = 0.50F;
-                needleDown = false;
+                if ( needleCounter <= 0 && needleDown == true)
+                {
+                    Audio_forkstab.audio.Play();
+                    jumpCounter = 0.6f;
+                    needle.transform.position = needle.transform.position + needleUpOffset;
+                    needle.collider.enabled = true;
+                    needleCounter = 0.50F;
+                    needleDown = false;
+                }
             }
         }
         if (needleCounter <= 0.25F && needleDown == false)
@@ -243,8 +248,12 @@ public class ShoeController : MonoBehaviour {
     {
         if (other.gameObject.tag == "nail")
         {
-            gameObject.SendMessage("SubtractHealth", 25f);
-            other.collider.enabled = false;
+            if (pinTriggerTimer >= 1.5)
+            {
+                gameObject.SendMessage("SubtractHealth", 25f);
+                other.collider.enabled = false;
+                pinTriggerTimer = 0;
+            }
         }
         if (other.gameObject.tag == "foot")
         {

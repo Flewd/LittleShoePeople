@@ -34,6 +34,7 @@ public class LevelSpawner : MonoBehaviour {
         musicPlayer = gameObject.GetComponent<AudioSource>();
 
         eventsList = new musicEvent[]{
+            /*
         new musicEvent(musicEventType.nail, 4.9f),          //random example: new (musicEventType)musicEvent(Random.Range(0, 5), 4.9f)
         new musicEvent(musicEventType.nail, 8.892f),
         new musicEvent((musicEventType)Random.Range(2, 5), 12.943f),
@@ -67,6 +68,7 @@ public class LevelSpawner : MonoBehaviour {
         new musicEvent((musicEventType)Random.Range(2, 5), 103.6f),
         new musicEvent(musicEventType.foot, 111.904f),
         new musicEvent(musicEventType.foot, 113.904f)
+             */
     };
 
 	}
