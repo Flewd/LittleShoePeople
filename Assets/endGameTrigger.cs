@@ -40,7 +40,7 @@ public class endGameTrigger : MonoBehaviour {
 
     IEnumerator WaitThenSwitchCredits()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(8);
         Application.LoadLevel("Credits");
     }
 }
