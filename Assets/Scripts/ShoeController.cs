@@ -90,15 +90,13 @@ public class ShoeController : MonoBehaviour {
         PostGameUI.SetActive(false);
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            gameState = GameStates.play;
-            gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking1;
-            GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>().startGenerator();
+			JumpButtonPressed();
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             //Show Credits
-            Application.LoadLevel("Credits");
+			StabButtonPressed();
         }
     }
 
@@ -118,63 +116,17 @@ public class ShoeController : MonoBehaviour {
             gameObject.transform.position += new Vector3(6 * Time.deltaTime, 0, 0);
         }
 
-        if (jumpCounter <= 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (onMouseTrap == false)
-                {
-                    Audio_hop.audio.Play();
-                    jumpCounter = 1.35f;
-                    gameObject.rigidbody.AddForce(0, 700, 0);
-                    iTween.RotateAdd(gameObject, ht);
-                    lockFork = true;
-                }
-                else if (onMouseTrap == true)
-                {
-                    Audio_mousetrap.audio.Play();
-                    jumpCounter = 1.8f;
-                    gameObject.rigidbody.AddForce(0, 1100, 0);
-                    iTween.RotateAdd(gameObject, htm);
-                    if (currentMouseTrap != null)
-                    {
-                        currentMouseTrap.GetComponent<MouseTrapController>().switchMouseTrapSprite();
-                    }
-                    lockFork = true;
-                }
-                if (onSuperMouseTrap == true)
-                {
-                    Audio_mousetrap.audio.Play();
-                    jumpCounter = 10;
-                    gameObject.rigidbody.AddForce(0, 1600, 0);
-                    iTween.RotateAdd(gameObject, htm);
-                    if (currentMouseTrap != null)
-                    {
-                        currentMouseTrap.GetComponent<MouseTrapController>().switchMouseTrapSprite();
-                    }
-                    lockFork = true;
 
-                    iTween.MoveTo(Camera.main.gameObject, Camera.main.gameObject.transform.position + new Vector3(5,10,0),2);
-                    Camera.main.gameObject.GetComponent<CameraController>().toiletBegan = true;
-                }
-                
-            }
+	    if (Input.GetKeyDown(KeyCode.Space))
+	    {
+			JumpButtonPressed();
         }
 
-        if (lockFork == false)
-        {
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-            {
-                if ( needleCounter <= 0 && needleDown == true)
-                {
-                    Audio_forkstab.audio.Play();
-                    jumpCounter = 0.6f;
-                    needle.transform.position = needle.transform.position + needleUpOffset;
-                    needle.collider.enabled = true;
-                    needleCounter = 0.50F;
-                    needleDown = false;
-                }
-            }
+
+	    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+	    {
+			StabButtonPressed();
+
         }
         if (needleCounter <= 0.25F && needleDown == false)
         {
@@ -322,4 +274,65 @@ public class ShoeController : MonoBehaviour {
     {
         lockFork = false;
     }
+
+	public void JumpButtonPressed()
+	{
+				if (gameState == GameStates.play) {
+						if (jumpCounter <= 0) {
+								if (onMouseTrap == false) {
+										Audio_hop.audio.Play ();
+										jumpCounter = 1.35f;
+										gameObject.rigidbody.AddForce (0, 700, 0);
+										iTween.RotateAdd (gameObject, ht);
+										lockFork = true;
+								} else if (onMouseTrap == true) {
+										Audio_mousetrap.audio.Play ();
+										jumpCounter = 1.8f;
+										gameObject.rigidbody.AddForce (0, 1100, 0);
+										iTween.RotateAdd (gameObject, htm);
+										if (currentMouseTrap != null) {
+												currentMouseTrap.GetComponent<MouseTrapController> ().switchMouseTrapSprite ();
+										}
+										lockFork = true;
+								}
+								if (onSuperMouseTrap == true) {
+										Audio_mousetrap.audio.Play ();
+										jumpCounter = 10;
+										gameObject.rigidbody.AddForce (0, 1600, 0);
+										iTween.RotateAdd (gameObject, htm);
+										if (currentMouseTrap != null) {
+												currentMouseTrap.GetComponent<MouseTrapController> ().switchMouseTrapSprite ();
+										}
+										lockFork = true;
+					
+										iTween.MoveTo (Camera.main.gameObject, Camera.main.gameObject.transform.position + new Vector3 (5, 10, 0), 2);
+										Camera.main.gameObject.GetComponent<CameraController> ().toiletBegan = true;
+								}
+						}
+			
+				} else if (gameState == GameStates.start) {
+
+			gameState = GameStates.play;
+			gameObject.GetComponent<SpriteRenderer>().sprite = bootWalking1;
+			GameObject.Find("LevelSpawner").GetComponent<LevelSpawner>().startGenerator();
+		}
+	}
+
+public void StabButtonPressed()
+	{
+		if (gameState == GameStates.play) {
+						if (lockFork == false) {
+								if (needleCounter <= 0 && needleDown == true) {
+										Audio_forkstab.audio.Play ();
+										jumpCounter = 0.6f;
+										needle.transform.position = needle.transform.position + needleUpOffset;
+										needle.collider.enabled = true;
+										needleCounter = 0.50F;
+										needleDown = false;
+								}
+						}
+				} else if (gameState == GameStates.start) {
+						Application.LoadLevel ("Credits");
+				}
+	}
 }

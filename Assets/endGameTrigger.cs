@@ -42,5 +42,6 @@ public class endGameTrigger : MonoBehaviour {
     {
         yield return new WaitForSeconds(8);
         Application.LoadLevel("Credits");
+		//Application.LoadLevel(Application.loadedLevelName);	//for no credits version
     }
 }
